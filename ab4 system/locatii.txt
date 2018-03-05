@@ -1,0 +1,3 @@
+Lacul Rosu,Romania->Harghita->Ghiorghieni,150,trasee montane->canotaj->relaxare,01.01->01.01
+Cheile Bicazului,Romania->Neamt>Piatra Neamt,350,trasee montane->alpinism,01.02->01.11
+Mamaia,Romania->Constanta->Constanta,250,innot->plaja->aqua magic,01.05->01.10
