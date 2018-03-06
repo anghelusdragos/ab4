@@ -1,16 +1,21 @@
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 public class Locatie {
-	String nume;
-	String tara;
-	String judet;
-	String oras;
-	String locatie;
-	int pret;
-	Vector<String> activitati = new Vector<>();
-	String start_date;
-	String end_date;
+	private String nume;
+	private String tara;
+	private String judet;
+	private String oras;
+	private String locatie;
+	private int pret;
+	private Vector<String> activitati = new Vector<>();
+	private LocalDate start_date;
+	private LocalDate end_date;
 	
 	//Constructorul clasei care primeste informatiile despre o locatie si initializeaza valorile necesare acestui obiect
 	public Locatie(String nume, String locatie, int pret, String lista_activitati, String data) {
@@ -34,16 +39,58 @@ public class Locatie {
 			activitati.addElement(st.nextToken());
 		}
 		
-		//perioada de timp disponibila
+        DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		st = new StringTokenizer(data, "->");
-		this.start_date = st.nextToken();
-		this.end_date = st.nextToken();
-		
+		start_date = LocalDate.parse(st.nextToken(), myFormat);
+		end_date = LocalDate.parse(st.nextToken(), myFormat);
+	}
+	
+	public String getNume() {
+		return this.nume;
+	}
+	
+	public String getTara() {
+		return this.tara;
+	}
+	
+	public String getJudet() {
+		return this.judet;
+	}
+	
+	public String getOras() {
+		return this.oras;
+	}
+	
+	public String getLocatie() {
+		return this.locatie;
+	}
+	
+	public int getPret() {
+		return this.pret;
+	}
+	
+	public Vector<String> getActivitati(){
+		return this.activitati;
+	}
+	
+	public String getPerioada() {
+		return start_date.toString() + "->" + end_date.toString();
 	}
 	
 	public String toString() {
-		String s = "";
-		s += this.nume + " " + this.tara + " " + this.judet + " " + this.oras + " " + this.pret + " " + this.start_date + " " + this.end_date;
-		return s;
+		String rez = "";
+		rez += "Nume: " + this.nume + "\n";
+		rez += "Tara: " + this.tara + "\n";
+		rez += "Judet: " + this.judet + "\n";
+		rez += "Oras: " + this.oras + "\n";
+		rez += "Locatie: " + this.locatie + "\n";
+		rez += "Pret: " + this.pret + "\n";
+		rez += "Activitati: ";
+		for (int j = 0; j < activitati.size() - 1; j++) {
+			rez += activitati.get(j) + ", ";
+		}
+		rez += activitati.get(activitati.size() - 1) + "\n";
+		rez += "Periada: " + getPerioada() + "\n";
+		return rez;
 	}
 }
