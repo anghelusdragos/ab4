@@ -77,6 +77,7 @@ public class Locatie {
 		return start_date.toString() + "->" + end_date.toString();
 	}
 	
+	//toate informatiile despre o locatie
 	public String toString() {
 		String rez = "";
 		rez += "Nume: " + this.nume + "\n";
@@ -93,4 +94,29 @@ public class Locatie {
 		rez += "Periada: " + getPerioada() + "\n";
 		return rez;
 	}
+	
+	/*
+	  ->aceasta functie verifica daca perioada primita ca parametru este inclusa in perioada disponibila de aceasta locatie
+	  ->ma folosesc de LocalDate pentru a compara datele si daca data primita e inclusa in cea disponibila returnez true
+	  altfel false.
+	 */
+	public boolean CheckPerioada(String perioada) {
+		StringTokenizer st = new StringTokenizer(perioada, "->");
+		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		LocalDate incepe_date = LocalDate.parse(st.nextToken(), myFormat);
+		LocalDate termina_date = LocalDate.parse(st.nextToken(), myFormat);
+		if (start_date.isEqual(incepe_date)) {
+			if (end_date.isAfter(termina_date) || end_date.isEqual(termina_date))
+				return true;
+			else 
+				return false;
+		}
+		if (start_date.isBefore(incepe_date)) {
+			if (end_date.isAfter(termina_date) || end_date.isEqual(termina_date))
+				return true;
+			else
+				return false;
+		} else
+			return false;
+		}
 }

@@ -1,3 +1,7 @@
 Lacul Rosu,Romania->Harghita->Ghiorghieni,150,trasee montane->canotaj->relaxare,01.01.2018->01.01.2019
 Cheile Bicazului,Romania->Neamt>Piatra Neamt,350,trasee montane->alpinism,01.02.2018->01.11.2018
 Mamaia,Romania->Constanta->Constanta,250,innot->plaja->aqua magic,01.05.2018->01.10.2018
+Mocanita,Romania->Maramures->Viseu de Sus,160,relaxare->plimbare cu mocanita,01.03.2018->01.12.2018
+Cascada Cailor,Romania->Maramures->Viseu de Sus,180,drumetie->alpinism->trasee montane,01.01.2018->01.01.2019
+Manastirea Voronet,Romania->Suceava->Voronet,200,rugaciune->vizita,01.01.2018->01.01.2019
+Transfagarasan,Romania->Arges->Pitesti,300,excursie,01.07.2018->01.10.2018
