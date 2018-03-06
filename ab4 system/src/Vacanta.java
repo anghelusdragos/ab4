@@ -73,13 +73,6 @@ public class Vacanta {
 			return "Locatia cu numele " + nume_locatie + " nu a fost gasita";
 	}
 	
-	//verific daca imi afiseaza informatiile dorite daca numele locatiei e scris corect sau contine majuscule
-	public void test_informatii_locatie() {
-		System.out.println(informatii_locatie("Mamaia"));
-		informatii_locatie("maMaia");
-		informatii_locatie("Cheile Bicazului");
-	}
-	
 	/*
 	 ->in functie de numele locatiei dorite si in functie de perioada aleasa functia returneaza maxim 5 locatii in
 	 functie de costul total pentru acea perioada
@@ -113,11 +106,53 @@ public class Vacanta {
 		}
 		return rez;
 	}
+	
+	/*
+	 	->iterez prin tot vectorul de locatii si verific daca activitatea dorita se afla printre vectorul de activitati
+	 	a locatiei respective si daca numarul de zile este mai mare sau egal cu 10, daca da adaug locatia intr-un vector.
+	 	->sortez crescator vectorul in functie de pret si returnez toate informatiile despre acea locatie
+	 */
+	public String activitate_zece_zile(String nume_activitate) {
+		String rez = "";
+		boolean check = false;
+		Vector<Locatie> aux = new Vector<>();
+		for (Locatie locatie:locatii) {
+			if (locatie.getActivitati().contains(nume_activitate.toLowerCase()) && locatie.ten_days()) {
+				check = true;
+				aux.add(locatie);
+			}
+		}
+		if (check == false)
+			rez += "Activitatea " + nume_activitate + " nu este disponibila in nicio locatie pentru 10 zile de activitate";
+		else {
+			Collections.sort(aux, new Comparator() {
+
+				@Override
+				public int compare(Object o1, Object o2) {
+					Locatie locatie1 = (Locatie) o1;
+					Locatie locatie2 = (Locatie) o2;
+					return locatie1.getPret() - locatie2.getPret();
+				}
+			});
+			rez += aux.get(0).toString();
+		}
+		return rez;
+	}
+	
+	//verific daca imi afiseaza informatiile dorite daca numele locatiei e scris corect sau contine majuscule
+	public void test_informatii_locatie() {
+		System.out.println("Test informatii locatie:");
+		System.out.println(informatii_locatie("Mamaia"));
+		informatii_locatie("maMaia");
+		informatii_locatie("Cheile Bicazului");
+	}
+	
 	/*
 	  	->functie care verifica daca perioada trimisa ca parametru este inclusa in perioada disponibila locatiei
 		->funcita testeaza combinatiile posibile de date: incluse, egale si gresite
 	*/
 	public void test_perioada() {
+		System.out.println("Test perioada:");
 		System.out.println(locatii.get(0).CheckPerioada("01.01.2018->01.01.2019"));
 		System.out.println(locatii.get(0).CheckPerioada("01.02.2018->01.01.2019"));
 		System.out.println(locatii.get(0).CheckPerioada("01.02.2018->01.12.2018"));
@@ -126,8 +161,26 @@ public class Vacanta {
 	}
 
 	public void test_locatie() {
+		System.out.println("Test locatie:");
 		System.out.println(top_locatii("Romania", "05.06.2018->04.07.2018"));
 		System.out.println(top_locatii("Maramures", "02.04.2018->05.05.2018"));
+	}
+	
+	public void test_ten_days() {
+		System.out.println("Test 10 zile:");
+		System.out.println(locatii.get(0).ten_days());
+		System.out.println(locatii.get(locatii.size() - 1).ten_days());
+		Locatie loc = new Locatie("Transfagarasanu","Romania->Arges->Pitesti",300,"excursie","14.12.2018->01.01.2019");
+		System.out.println(loc.ten_days());
+		Locatie loc1 = new Locatie("Transfagarasanu","Romania->Arges->Pitesti",300,"excursie","24.12.2018->01.01.2019");
+		System.out.println(loc1.ten_days());
+		System.out.println();
+	}
+	
+	public void test_activitate() {
+		System.out.println("Test activitate:");
+		System.out.println(activitate_zece_zile("trasee montane"));
+		System.out.println(activitate_zece_zile("fotografie"));
 	}
 	public static void main (String[] args) {
 		Vacanta v = new Vacanta();
@@ -135,5 +188,7 @@ public class Vacanta {
 		v.test_informatii_locatie();
 		v.test_perioada();
 		v.test_locatie();
+		v.test_ten_days();
+		v.test_activitate();
 	}
 }

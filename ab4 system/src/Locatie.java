@@ -118,5 +118,31 @@ public class Locatie {
 				return false;
 		} else
 			return false;
+	}
+	
+	/*
+	 	->aceasta functie verifica daca perioada de timp este mai mare sau egala cu 10 zile
+	 	->verific mai intai daca e diferenta de ani intre cele doua date. Daca da verific daca data de inceput e Decembrie
+	 	si luna de final e Ianuarie, daca nu returnez adevarat, alfel calculez cate zile din luna Decembrie mi-au ramas
+	 	si le adun cu zilele din Ianuarie. Daca aceasta suma e mai mare sau egala cu 10 returnez true.
+	 	->daca avem acelasi an calculez diferenta zilelor. Daca e mai mare sau egala cu 10 returnez true altfel false.
+	 */
+	public boolean ten_days() {
+		if (start_date.getYear() != end_date.getYear()) {
+			if (start_date.getMonthValue() == 12 && end_date.getMonthValue() == 1) {
+				int days = 31 - start_date.getDayOfMonth();
+				days += end_date.getDayOfMonth();
+				if (days >= 10)
+					return true;
+				else
+					return false;
+			}
+			else
+				return true;
 		}
+		int dif_zile = end_date.getDayOfYear() - start_date.getDayOfYear();
+		if (dif_zile >= 10)
+			return true;
+		return false;
+	}
 }

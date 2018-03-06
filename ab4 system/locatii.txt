@@ -4,4 +4,5 @@ Mamaia,Romania->Constanta->Constanta,250,innot->plaja->aqua magic,01.05.2018->01
 Mocanita,Romania->Maramures->Viseu de Sus,160,relaxare->plimbare cu mocanita,01.03.2018->01.12.2018
 Cascada Cailor,Romania->Maramures->Viseu de Sus,180,drumetie->alpinism->trasee montane,01.01.2018->01.01.2019
 Manastirea Voronet,Romania->Suceava->Voronet,200,rugaciune->vizita,01.01.2018->01.01.2019
-Transfagarasan,Romania->Arges->Pitesti,300,excursie,01.07.2018->01.10.2018
+Transfagarasanu,Romania->Arges->Pitesti,300,excursie,01.07.2018->01.10.2018
+Filmul de piatra,Romania->Neamt->Piatra Neamt,400,vizionare filme->fotografie,27.07.2018->01.08.2018
